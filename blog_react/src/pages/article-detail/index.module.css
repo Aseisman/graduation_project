@@ -1,0 +1,12 @@
+.ant-textarea > textarea {
+    border-radius: 0.5rem;
+}
+.icon{
+    height: 4rem;
+    border-radius: 50%;
+    border: 1px solid #717171;
+    padding: 0.7rem;
+    width: 4rem;
+    margin: 1rem;
+    cursor: pointer;
+}

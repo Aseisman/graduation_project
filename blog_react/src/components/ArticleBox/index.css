@@ -1,0 +1,98 @@
+
+
+
+
+
+
+/* pc */
+@media screen and (max-width:2560px){
+    .box{
+        width: 55em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 14rem;
+        border-bottom: 1px solid rgb(238, 238, 238);
+        cursor: pointer;
+    }
+    .title{
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 3rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 55rem;
+        min-width: 22rem;
+    }
+    
+    .title:hover{
+        color: rgba(54,54,54,0.56);
+    }
+    .desc{
+        transform: translate(0px, 1rem);
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        max-width: 50rem;
+        min-width: 22rem;
+        font-size: 1.4rem;
+    }
+    .comment{
+        transform: translate(0px, 2rem);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 30vw;
+        max-width: 55rem;
+        min-width: 22rem;
+    }
+    .box-photo{
+        width: 14rem;
+        height: 10rem;
+    }
+}
+/* pc */
+@media screen and (max-width:1330px){
+    .box{
+        width: 42em;
+    }
+    .title{
+        font-size: 1.7rem;
+        font-weight: 700;
+        line-height: 2.5rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 42rem;
+        min-width: 22rem;
+    }
+    .desc {
+        transform: translate(0px, 1rem);
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        max-width: 37rem;
+        min-width: 22rem;
+        font-size: 1.2rem;
+    }
+    .comment {
+        transform: translate(0px, 2rem);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 30vw;
+        max-width: 37rem;
+        min-width: 22rem;
+    }
+}
+/* 平板 */
+@media screen and (max-width:1030px){
+
+}
+/* phone */
+@media screen and (max-width:425px){
+
+}

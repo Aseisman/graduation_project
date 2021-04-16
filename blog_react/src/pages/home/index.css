@@ -1,0 +1,120 @@
+/* pc */
+@media screen and (max-width: 2560px) {
+    .index {
+        display: flex;
+    }
+    .articleList {
+        width: 58vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+    }
+    .right {
+        display: flex;
+        flex-direction: column;
+        width: 32vw;
+        align-items: center;
+    }
+    .activity {
+        width: 35rem;
+    }
+    .labels-box{
+        width: 18vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-width: 30rem;
+    }
+    .labels-title{
+        margin-top: 2rem;
+        font-size: 1.7rem;
+        font-weight: 900;
+        color: rgb(155, 103, 103);
+    }
+    .labels{
+        width: 19vw;
+        display: flex;
+        flex: 1;
+        flex-flow: wrap;
+    }
+    .labels div{
+        background: rgb(238, 238, 238);
+        padding: 0.5rem 0.7rem;
+        border-radius: 0.5rem;
+        margin: 0.4rem;
+        font-size: 1.4rem;
+        cursor: pointer;
+    }
+    .labels div:hover{
+        color:  rgb(153, 88, 88) !important;
+    }
+    .add{
+        position: fixed;
+        background: rgb(238, 113, 91);;
+        width: 8rem;
+        height: 8rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        bottom: 2rem;
+        right: 3rem;
+    }
+    .add:hover{
+        background: rgb(241, 90, 63)!important;
+        cursor: pointer;
+    }
+    .add img{
+        width: 5rem;
+    }
+}
+@media screen and (max-width: 1406px) {
+    .right {
+        display: flex;
+        flex-direction: column;
+        width: 32vw;
+        align-items: center;
+    }
+}
+/* pc */
+@media screen and (max-width: 1330px) {
+    .index {
+        display: flex;
+    }
+    .articleList {
+        width: 58vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+/* 平板 */
+@media screen and (max-width: 1030px) {
+    .index {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .articleList {
+        width: 94vw;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .right {
+        display: none;
+    }
+}
+
+/* phone */
+@media screen and (max-width: 425px) {
+    .articleList {
+    }
+    .right {
+        display: none;
+    }
+}

@@ -1,0 +1,74 @@
+@font-face {
+    font-family: 'IOS';
+    src: url('../../assets/fonts/苹方黑体-中粗-简.ttf');
+}
+
+.all-box {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(243, 243, 249);
+    /* background-image: url("../../assets/back.png"); */
+}
+/* 使用伪元素可以防止图片把子div给覆盖 */
+/* .all-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: url('../../assets/back.png') no-repeat;
+    background-size: 100% 100%;
+    z-index: -1;
+} */
+.register-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 68rem;
+    height: 54rem;
+    position: absolute;
+    left: calc(50% - 34rem);
+    top: calc(50% - 28rem);
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0.6rem 1.1rem 4.1rem -2.8rem #a99de7;
+}
+.register-form {
+    width: 60rem;
+    height: 45rem;
+    position: relative;
+}
+.register-title {
+    font-family: 'IOS';
+    width: inherit;
+    text-align: center;
+    font-size: 3rem;
+    line-height: 4rem;
+    margin-bottom: 5rem;
+}
+input {
+    display: block;
+    width: inherit;
+    border: none;
+    border-bottom: 1px solid rgba(149, 149, 149, 0.2);
+    line-height: 6rem;
+    font-size: 1.6rem;
+}
+.common-button {
+    width: inherit;
+    height: 5rem;
+    color: white;
+    font-size: 1.6rem;
+    background-color: rgb(238, 113, 91);
+    border-radius: 0.5rem;
+    line-height: 5rem;
+    text-align: center;
+    margin: 3rem 0 3rem 0;
+    font-family: 'IOS';
+}
+.common-button:hover {
+    background-color: rgb(241, 90, 63);
+    cursor: pointer;
+}

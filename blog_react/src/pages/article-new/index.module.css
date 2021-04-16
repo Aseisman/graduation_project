@@ -1,0 +1,126 @@
+.whole-article-box {
+    display: flex;
+}
+.article-list {
+    width: 16vw;
+    background: #404040;
+}
+.goBack-button {
+    width: 80%;
+    color: rgb(238, 113, 91);
+    font-size: 1.6rem;
+    text-align: center;
+    border: 1px solid rgb(238, 113, 91);
+    border-radius: 2rem;
+    height: 4rem;
+    line-height: 3.5rem;
+    min-width: 6rem;
+    margin: 4vh 10%;
+}
+.goBack-button:hover {
+    cursor: pointer;
+}
+.register:hover {
+    background-color: rgba(233, 233, 233, 0.7);
+    cursor: pointer;
+}
+.title {
+    height: 5vh;
+    font-size: 3vh;
+    width: 84vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: #595959;
+}
+.title input {
+    width: 70vw;
+}
+.submitButton {
+    /* background-color: rgb(238, 113, 91);
+    color: white;
+    width: 5vw;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+    font-size: 1.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4vh;
+    cursor: pointer; */
+    text-align: center;
+    position: absolute;
+    right: 13.4rem;
+    line-height: 4.4rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.submitButton:hover{
+    background-color: #e9e9e9;
+    cursor: pointer;
+}
+.new-article {
+    color: #ffffffd9;
+    line-height: 3rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+.article-box {
+    color: #ffffffd9;
+    line-height: 4rem;
+    font-size: 1.5rem;
+}
+.article-box > div {
+    padding-left: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+.article-box-active {
+    border-left: 0.4rem solid rgb(238, 113, 91);
+    background-color: rgba(255, 255, 255, 0.3);
+}
+.article-box-disactive {
+    padding-left: 1.4rem !important;
+}
+.article-title {
+    max-width: 81%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.article-box-disactive:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+}
+.article-detail {
+    display: none;
+    position: absolute;
+    width: 12rem;
+    left: -9rem;
+    background: white;
+    color: #595959;
+    border-radius: 0.5rem;
+}
+.article-detail :not(:last-child) {
+    border-bottom: 1px solid #cacaca;
+}
+.article-detail > div:hover {
+    background: #666666;
+    color: rgba(255, 255, 255, 0.801);
+    border: 1px solid #666666;
+}
+.article-detail::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 96px;
+    border-bottom: 10px solid white;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+.setting-icon:hover .article-detail{
+    display: block;
+}

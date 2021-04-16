@@ -1,0 +1,114 @@
+.article-condition {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(242, 242, 242);
+    z-index: 999;
+}
+.close-button {
+    position: absolute;
+    top: 4vh;
+    right: 2vw;
+    cursor: pointer;
+}
+.condition-box {
+    display: flex;
+    width: 60vw;
+    height: 60rem;
+    justify-content: space-around;
+    position: absolute;
+    left: 20vw;
+    top: calc((100vh - 60rem) / 2);
+}
+.phone-top {
+    background-color: rgb(85, 85, 85);
+    width: 34rem;
+    height: 6.8rem;
+    border-top-right-radius: 5rem;
+    border-top-left-radius: 5rem;
+}
+.phone-border {
+    width: 34rem;
+    background: rgb(85, 85, 85);
+}
+.phone-screen {
+    background: white;
+    width: 92%;
+    margin-left: 4%;
+    padding-bottom: 2rem;
+}
+.phone-desc {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    height: 3.6rem;
+    margin: 0;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    color: #b3b3b3;
+}
+.label > span {
+    color: #b3b3b3;
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+}
+.per-box {
+    position: relative;
+    margin-bottom: 3rem;
+}
+b {
+    font-size: 17px;
+    color: #262626;
+    margin-bottom: 5px;
+    display: block;
+    font-weight: 600;
+}
+.ant-textarea > textarea {
+    border-radius: 0.5rem;
+}
+.time-lime {
+    position: absolute;
+    top: 0px;
+    left: -4.5rem;
+    border: 1px solid grey;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 3rem;
+    background: rgb(242, 242, 242);
+}
+.upload-box {
+    width: 8rem;
+    display: flex;
+    background: #e6e6e6;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 8rem;
+    color: grey;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.preserve {
+    width: 9rem;
+    height: 3.9rem;
+    color: white;
+    font-size: 1.6rem;
+    background-color: rgb(238, 113, 91);
+    border-radius: 2rem;
+    line-height: 3.5rem;
+    text-align: center;
+    margin: 0 1rem;
+    cursor: pointer;
+}
+.cancel {
+    width: 9rem;
+    height: 3.9rem;
+    line-height: 3.5rem;
+    text-align: center;
+    color:#595959;
+    cursor: pointer;
+}

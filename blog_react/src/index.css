@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'IOS';
+  src: url('./assets/fonts/苹方黑体-细-简.ttf');
+}
+html{
+  font-size: 62.5%;
+  color:#000000c9;
+}
+body{
+  font-family: 'IOS';
+}
+ul{
+  margin:0;
+  padding: 0;
+}
+li{
+  list-style: none;
+  /* 小圆点消失 */
+}
+a{
+  text-decoration: none;
+  color:#000000c9
+}
+
+input{  
+	background:none;  
+	outline:none;  
+	border:none;
+}
+/* input:focus{   
+	border:none;
+} */

@@ -1,0 +1,40 @@
+.yy-input {
+    height: 40px;
+    line-height: 40px;
+    margin-top: 10px;
+    font-size: 1rem;
+    border-radius: 8px;
+    background: rgba(246, 246, 246, 1);
+    outline: none;
+    border: 0px;
+    width: 520px;
+    padding-left: 20px;
+}
+
+.el-icon-search {
+    color: rgb(52, 145, 240);
+    font-size: 1.4rem;
+    /* right: 20px; */
+    position: absolute;
+    right: 50px;
+    top: 18px;
+}
+
+.yy-table {
+    width: 90%;
+    margin-left: 50px;
+    margin-top: 20px;
+    text-align: center;
+    height: 510px;
+}
+
+.yy-page {
+    text-align: right;
+    margin-right: 70px;
+    margin-top: 10px;
+}
+
+.yy-btn {
+    color: rgba(254, 65, 65, 1);
+    font-size: 1.2rem;
+}

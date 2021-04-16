@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 
+        note:
+        user-scalable=no设置不可缩放
+        width=device-width ：表示宽度是设备屏幕的宽度
+        initial-scale=1.0：表示初始的缩放比例
+        minimum-scale=0.5：表示最小的缩放比例
+        maximum-scale=2.0：表示最大的缩放比例
+        user-scalable=yes：表示用户是否可以调整缩放比例
+    -->
+    <meta name="viewport" content="width=device-width user-scalable=no maximum-scale=1.0 minimum-scale=1.0">
+    <meta name="description" content="CargoX's Introduce himself gracefully">
+    <title>Gentleman CargoX</title>
+    <link rel="shortcut icon" href="img/shortCutIcon.png">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <style>
+        @keyframes runs {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg)
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg)
+            }
+        }
+        
+        @keyframes warn {
+            0% {
+                transform: scale(0.3);
+                -webkit-transform: scale(0.3, 0.3);
+                opacity: 0.0;
+            }
+            25% {
+                transform: scale(0.3);
+                -webkit-transform: scale(0.3, 0.3);
+                opacity: 0.1;
+            }
+            50% {
+                transform: scale(0.5);
+                -webkit-transform: scale(0.5, 0.5);
+                opacity: 0.3;
+            }
+            75% {
+                transform: scale(0.8);
+                -webkit-transform: scale(0.8, 0.8);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1);
+                -webkit-transform: scale(1, 1);
+                opacity: 0.0;
+            }
+        }
+        
+        @keyframes runn {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg)
+            }
+            100% {
+                -webkit-transform: rotate(-360deg);
+                -o-transform: rotate(-360deg);
+                -moz-transform: rotate(-360deg);
+                -ms-transform: rotate(-360deg)
+            }
+        }
+        
+        @keyframes opacity {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: .5;
+            }
+        }
+        
+        .allContainer {
+            height: 100vh;
+        }
+        
+        .swiperContainer {
+            /* 定义在父元素上的 100rem表示焦距，眼睛到屏幕的焦距*/
+            transform: perspective(1000px);
+            transform-style: preserve-3d;
+            /* 3d模式 */
+            /* 下面是适用safari和chrome的情况 */
+            -webkit-transform: perspective(1000px);
+            -webkit-transform-style: preserve-3d;
+        }
+        
+        .bgPhoto {
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        .cover {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            background: rgba(255, 255, 255, 0.3);
+            width: 100%;
+            /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+            height: 100vh;
+            filter: alpha(opacity=60);
+            /*设置透明度为60%*/
+            opacity: 1;
+            /*非IE浏览器下设置透明度为60%*/
+            z-Index: 999;
+        }
+        
+        .My-logo {
+            width: 235px;
+            height: 65px;
+            position: fixed;
+            z-index: 1000;
+            top: 4%;
+            border-radius: 10px;
+            left: 5%;
+            background: rgba(243, 243, 247, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        
+        .headPhoto {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        
+        .aboutCargo {
+            font-size: 20px;
+            font-weight: 900;
+            color: black;
+            text-decoration: none;
+        }
+        
+        .aboutCargo:hover {
+            color: cornflowerblue;
+        }
+        
+        .wrap {
+            position: absolute;
+            z-index: 2000;
+            top: calc(50% - 175px);
+            left: calc(50% - 275px);
+            padding: 30px;
+            width: 550px;
+            height: 255px;
+            --rX: 0;
+            --rY: 0;
+            /* 父元素定义了perspective后，用transform进行3d效果 */
+            /* 初始化为0 X轴0，Y轴0 */
+            -webkit-transform: rotateX(calc(var(--rX) * 1deg)) rotateY(calc(var(--rY) * 1deg));
+            transform: rotateX(calc(var(--rX) * 1deg)) rotateY(calc(var(--rY) * 1deg));
+            transform-origin: top;
+            -webkit-transform-origin: top;
+            /* 动作时间 */
+            /* transform: rotateY(-10deg) rotateX(-10deg); */
+            transition: -webkit-transform .6s 0.5s;
+            transition: transform .6s 0.5s;
+            transition: transform .6s 0.5s, -webkit-transform .6s 0.5s;
+        }
+        
+        .wrap--active {
+            transition: none;
+            border: 1px solid rgba(159, 159, 159, 1);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.041)
+        }
+        
+        .swiper-slide {
+            /* height: auto !important; */
+            /* height: 100% !important; */
+            height: 100vh !important;
+        }
+        
+        .swiper-slide-active {
+            /* height: auto !important; */
+            /* height: 100% !important; */
+            height: 100vh !important;
+        }
+        
+        .pagination {
+            position: fixed;
+            right: 15px;
+            top: calc(50% - 150px);
+            width: 50px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .pdoit {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .pdoit:after {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #2c6bad;
+            position: absolute;
+        }
+        
+        .point--active:before {
+            content: '';
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            /* background: black; */
+            /* border: 1px solid #2c6bad; */
+            z-index: -1;
+            background-color: #2c6bad;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            -webkit-animation: warn 2s ease-out;
+            -moz-animation: warn 2s ease-out;
+            animation: warn 2s ease-out;
+            -webkit-animation-iteration-count: infinite;
+            -moz-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+            /* background: #f73939e8; */
+        }
+        
+        .line {
+            width: 6px;
+            border-right: 1px dashed #8c7576;
+            height: 25px;
+            margin-right: 6px;
+        }
+        
+        .radio {
+            /* --deg: 0; */
+            width: 40px;
+            height: 40px;
+            background: url('./img/lun2.jpg') no-repeat;
+            background-size: 100% 100%;
+            border-radius: 50%;
+            animation: runs 15s infinite linear;
+            -webkit-animation: runs 15s infinite linear;
+        }
+        
+        .nav-yuan {
+            position: fixed;
+            right: 2%;
+            top: 4%;
+            z-index: 6666;
+            width: 60px
+        }
+        
+        .nav-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            position: absolute;
+            cursor: pointer;
+            box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
+            -webkit-transition-duration: 0.66s;
+            transition-duration: 0.66s;
+            -o-transition-duration: 0.66s;
+            -moz-transition-duration: 0.66s;
+            -ms-transition-duration: 0.66s;
+            -webkit-transition-timing-function: swing;
+            transition-timing-function: swing;
+            -o-transition-timing-function: swing;
+            -moz-transition-timing-function: swing;
+            -ms-transition-timing-function: swing;
+        }
+        
+        .nav-toggle:before {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: transparent;
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translateX(-50%) translateY(-50%);
+            -ms-transform: translateX(-50%) translateY(-50%);
+            transform: translateX(-50%) translateY(-50%);
+            -o-transform: translateX(-50%) translateY(-50%);
+            -moz-transform: translateX(-50%) translateY(-50%);
+            -webkit-transition-duration: 0.66s;
+            transition-duration: 0.66s;
+            -o-transition-duration: 0.66s;
+            -moz-transition-duration: 0.66s;
+            -ms-transition-duration: 0.66s;
+            -webkit-transition-timing-function: swing;
+            transition-timing-function: swing;
+            -o-transition-timing-function: swing;
+            -moz-transition-timing-function: swing;
+            -ms-transition-timing-function: swing;
+        }
+        
+        .nav-toggle .icon {
+            width: 30px;
+            height: 4px;
+            background-color: white;
+            border-radius: 2px;
+            position: absolute;
+            top: 28px;
+            left: 15px;
+            -webkit-transition-duration: 0.5s;
+            transition-duration: 0.5s;
+            -o-transition-duration: 0.5s;
+            -moz-transition-duration: 0.5s;
+            -ms-transition-duration: 0.5s;
+            transiting-timing-function: swing;
+            -webkit-transiting-timing-function: swing;
+            -o-transiting-timing-function: swing;
+            -moz-transiting-timing-function: swing;
+            -ms-transiting-timing-function: swing;
+        }
+        
+        .icon:before {
+            top: -9px;
+            width: 30px;
+            height: 4px;
+            background-color: white;
+            border-radius: 2px;
+            content: "";
+            position: absolute;
+            left: 0;
+            -webkit-transition-duration: 0.5s;
+            transition-duration: 0.5s;
+            -o-transition-duration: 0.5s;
+            -moz-transition-duration: 0.5s;
+            -ms-transition-duration: 0.5s;
+            -webkit-transition-timing-function: swing;
+            transition-timing-function: swing;
+            -o-transition-timing-function: swing;
+            -moz-transition-timing-function: swing;
+            -ms-transition-timing-function: swing;
+        }
+        
+        .icon:after {
+            top: 9px;
+            width: 30px;
+            height: 4px;
+            background-color: white;
+            border-radius: 2px;
+            content: "";
+            position: absolute;
+            left: 0;
+            -webkit-transition-duration: 0.5s;
+            transition-duration: 0.5s;
+            -o-transition-duration: 0.5s;
+            -moz-transition-duration: 0.5s;
+            -ms-transition-duration: 0.5s;
+            -webkit-transition-timing-function: swing;
+            transition-timing-function: swing;
+            -o-transition-timing-function: swing;
+            -moz-transition-timing-function: swing;
+            -ms-transition-timing-function: swing;
+        }
+        
+        .talkbubble {
+            display: none;
+            width: 60px;
+            height: 29px;
+            background: #337ab7;
+            position: absolute;
+            top: 73px;
+            right: 0;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            font-size: 12px
+        }
+        
+        .talkbubble:before {
+            content: "";
+            position: absolute;
+            right: 22px;
+            top: -8px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-bottom: 8px solid #337ab7;
+            border-right: 8px solid transparent
+        }
+        
+        .nav-yuan:hover .talkbubble {
+            display: block;
+        }
+        
+        .coverall:before {
+            width: 100%;
+            height: calc(100% - 100vh);
+            background: rgba(255, 255, 255, 0.3);
+            filter: alpha(opacity=60);
+            opacity: 1;
+            content: "";
+            position: absolute;
+        }
+        
+        .absolute {
+            position: absolute;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100%;
+        }
+        /* 技能五环 */
+        /* .rings {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ring {
+            width: 120px;
+            height: 120px;
+            border-width: 8px;
+            border-radius: 100%;
+            border-style: solid;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -60px;
+            margin-right: -100px;
+            cursor: pointer;
+        }
+        
+        .ring-top {
+            transform: translateY(-100px) rotate(40deg);
+            border-color: #eb3350;
+            z-index: 1;
+        }
+        
+        .ring-detail-top {
+            display: none;
+            width: 120px;
+            height: 120px;
+            border-width: 8px;
+            border-radius: 100%;
+            border-style: solid;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -60px;
+            margin-top: -60px;
+            cursor: pointer;
+            transform: scale(2.5);
+            z-index: 6;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            background: red;
+            border: 8px solid red;
+        }
+        
+        .ring-top:hover+.ring-detail-top {
+            display: flex;
+        }
+        
+        .ring-left {
+            transform: translate(-80px, -40px);
+            border-color: #1587c1;
+            z-index: 2;
+        }
+        
+        .ring-right {
+            transform: translate(80px, -40px) rotate(113deg);
+            border-color: #1f8b3d;
+            z-index: 2;
+        }
+        
+        .ring-bottom-left {
+            transform: translate(-50px, 50px) rotate(257deg);
+            // rotate 349或者257 
+            border-color: #fab23f;
+            z-index: 2;
+        }
+        
+        .ring-bottom-right {
+            transform: translate(50px, 50px) rotate(181deg);
+            z-index: 2;
+        }
+        
+        .ring-segment {
+            border-bottom-color: transparent;
+            z-index: 3;
+        } */
+        
+        .board {
+            width: 30%;
+            height: 59vh;
+            background: transparent;
+            border: 1px solid #ae8e7b;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .board:before {
+            width: 32%;
+            height: 61vh;
+            content: "";
+            background-color: rgba(255, 255, 255, 0.3);
+            z-index: -1;
+            position: absolute;
+            border-radius: 20px;
+            margin-left: -1%;
+            margin-top: -1vh;
+        }
+        
+        .Skills {
+            display: flex;
+            color: white;
+            font-size: 16px;
+        }
+        
+        .Skills li {
+            margin: 6px;
+            width: 100px;
+            text-align: center;
+            height: 38px;
+            line-height: 38px;
+        }
+        
+        .Skills li+li {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        
+        .project_1 {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: url(./img/gerenjianli.png) no-repeat;
+            background-size: 100% 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            left: calc(40% - 300px);
+            top: 80px;
+            transition: all 0.5s;
+            color: #ffffff8f;
+        }
+        
+        .project_1:hover {
+            filter: grayscale(0);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .project_2 {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: url(./img/yangguangkecheng.png) no-repeat;
+            background-size: 100% 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            left: calc(50% - 125px);
+            top: 80px;
+            transition: all 0.5s;
+            color: #ffffff8f;
+        }
+        
+        .project_2:hover {
+            filter: grayscale(0);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .project_3 {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: url(./img/yunzhiguan.png) no-repeat;
+            background-size: 100% 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            right: calc(40% - 300px);
+            top: 80px;
+            transition: all 0.5s;
+            color: #ffffff8f;
+        }
+        
+        .project_4 {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: url(./img/bg4.jpg) no-repeat;
+            background-size: 100% 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            left: calc(40% - 174px);
+            bottom: 150px;
+            transition: all 0.5s;
+            color: #ffffff8f;
+        }
+        
+        .project_3:hover {
+            filter: grayscale(0);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .project_4:hover {
+            filter: grayscale(0);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .project_5 {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background-color: #c3c2c0;
+            background-size: 100% 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            right: calc(40% - 174px);
+            bottom: 150px;
+            transition: all 0.5s;
+            color: #ffffff8f;
+        }
+        
+        .project_5:hover {
+            filter: grayscale(0);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .W-lian-bottom span {
+            display: none;
+            width: 60px;
+            height: 30px;
+            background: #337ab7;
+            position: absolute;
+            top: -42px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            font-size: 12px
+        }
+        
+        .W-lian-bottom span:before {
+            content: "";
+            position: absolute;
+            right: 22px;
+            /* top: 30px; */
+            bottom: -8px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-top: 8px solid #337ab7;
+            border-right: 8px solid transparent
+        }
+        
+        .W-lian-bottom a {
+            text-decoration: none;
+            margin: 10px;
+            position: relative;
+        }
+        
+        .W-lian-bottom a:hover span {
+            display: block;
+        }
+        
+        .W-lian-bottom .W-Mail {
+            width: 138px;
+            left: -100px;
+        }
+        
+        .W-lian-bottom .W-Github {
+            left: -22px;
+        }
+        
+        .W-lian-bottom .W-qq {
+            left: -22px;
+            background: url(img/qq.jpg) no-repeat transparent;
+            background-size: 100% 100%;
+            width: 138px;
+            height: 150px;
+            left: -57px;
+            top: -165px;
+            border: 2px solid #337ab7;
+        }
+        
+        .W-lian-bottom .W-qq:before {
+            right: 66px;
+        }
+        
+        .W-lian-bottom .W-weixin {
+            left: -22px;
+            background: url(img/wechat.jpg) no-repeat transparent;
+            background-size: 100% 100%;
+            width: 138px;
+            height: 150px;
+            left: -57px;
+            top: -165px;
+            border: 2px solid #337ab7;
+        }
+        
+        .W-lian-bottom .W-weixin:before {
+            right: 66px;
+        }
+        
+        .W-work-nr {
+            width: 820px;
+            min-height: 468px;
+            overflow: hidden;
+            padding-bottom: 1px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: -210px 0 0 -410px
+        }
+        
+        .W-work-left {
+            float: left
+        }
+        
+        .W-jing-nr {
+            width: 200px;
+            height: 93px
+        }
+        
+        .W-jing-nr-parent {
+            width: 93px;
+            height: 93px;
+            position: relative;
+            float: right
+        }
+        
+        .W-jing-nr .W-time {
+            width: 83px;
+            height: 83px;
+            font-size: 30px;
+            font-weight: bold;
+            font-family: "微软雅黑";
+            text-align: center;
+            color: #03A9F4;
+            position: absolute;
+            left: 0;
+            top: 0;
+            border-radius: 50%;
+            border: 5px solid #d7d8d8;
+            cursor: pointer
+        }
+        
+        .W-jing-nr h5 {
+            margin-left: 10px;
+            margin-top: 36px;
+            float: left;
+            font-size: 18px;
+            color: #ffd200
+        }
+        
+        .W-jing-nr .W-time i {
+            font-size: 15px;
+            color: #31b5f1;
+            font-weight: bold;
+            display: block;
+            margin-top: -10px;
+            text-transform: uppercase
+        }
+        
+        .W-time span {
+            display: block;
+            width: 100%;
+            margin-top: 18px;
+            animation: 0.5s linear 0s 1 normal none running runs;
+            /* animation: 0.5s linear 0s 1 normal none running runn; */
+        }
+        /* .W-time:hover .W-zhuan {
+            display: block;
+            animation: 0.5s linear 0s 1 normal none running runn;
+        } */
+        
+        .W-zhuan {
+            animation: 0.5s linear 0s 1 normal none running runs;
+            display: none;
+            width: 83px;
+            height: 83px;
+            background: url("img/clock.png") no-repeat #6bc30d;
+            border-radius: 50%;
+            border: 5px solid #c4e79e;
+            background-position: center center;
+            background-size: cover;
+            position: absolute;
+            left: -5px;
+            top: -5px;
+        }
+        
+        .W-tim-ul {
+            position: relative;
+            width: 150px;
+            height: 360px;
+            border-right: 8px solid #d7d8d8;
+            padding-top: 20px;
+            cursor: pointer
+        }
+        
+        .W-tim-ul li {
+            height: 100px;
+            line-height: 100px
+        }
+        
+        .W-tim-ul li em {
+            font-size: 12px;
+            font-style: normal;
+            color: #e6de8d;
+            margin-left: 30px
+        }
+        
+        .W-tim-ul li i {
+            font-size: 18px;
+            color: #e6de8d;
+            margin-left: 8px
+        }
+        
+        .W-tim-ul li b {
+            width: 25px;
+            height: 2px;
+            float: right;
+            margin-top: 49px;
+            background: cornflowerblue
+        }
+        
+        .W-tim-ul li span {
+            border: 2px solid cornflowerblue;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: #fff;
+            display: block;
+            position: absolute;
+            right: -14px;
+            top: 63px;
+            cursor: pointer;
+            z-index: 111
+        }
+        
+        .W-tim-ul .W-margin-top1 {
+            margin-top: 25px
+        }
+        
+        .W-tim-ul .W-li-top-diyi {
+            margin-top: 3px
+        }
+        
+        .W-tim-ul .W-margin-top1 span {
+            top: 188px
+        }
+        
+        .W-tim-ul .W-margin-top2 {
+            margin-top: 25px
+        }
+        
+        .W-tim-ul .W-margin-top2 span {
+            top: 313px
+        }
+        
+        .W-work-right {
+            width: 670px;
+            padding-bottom: 1px;
+            overflow: hidden;
+            position: absolute;
+            left: 150px;
+            top: 90px
+        }
+        
+        .W-work-right ul li .W-jie1 {
+            font-size: 24px;
+            color: #fff;
+            transition: color 0.3s ease-in
+        }
+        
+        .W-jie1 strong {
+            font-weight: 500
+        }
+        
+        .W-work-right ul li .W-jie2 {
+            font-size: 12px;
+            color: #fff
+        }
+        
+        .W-work-right ul li {
+            margin-top: 26px;
+            padding-left: 30px;
+            height: 100px
+        }
+        
+        .W-work-right ul .W-time-top {
+            margin-top: 25px
+        }
+        
+        .W-work-right ul li .W-jie2 span {
+            display: block;
+            margin: -2px 0 2px;
+            color: #f7e621;
+        }
+        /* test */
+        
+        .coverphone {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            background: rgba(243, 208, 208, 0.41);
+            width: 100%;
+            /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+            height: 100vh;
+            filter: alpha(opacity=60);
+            /*设置透明度为60%*/
+            opacity: 1;
+            /*非IE浏览器下设置透明度为60%*/
+            z-Index: 1;
+        }
+        
+        .phone_message {
+            width: 100%;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .nav-open .icon {
+            width: 0;
+        }
+        
+        .nav-open .icon::before {
+            -webkit-transform: translateY(10px) rotate(45deg);
+            -ms-transform: translateY(10px) rotate(45deg);
+            -o-transform: translateY(10px) rotate(45deg);
+            transform: translateY(10px) rotate(45deg);
+        }
+        
+        .nav-open .icon::after {
+            -webkit-transform: translateY(-8px) rotate(-45deg);
+            -ms-transform: translateY(-8px) rotate(-45deg);
+            -o-transform: translateY(-8px) rotate(-45deg);
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        
+        .bars {
+            width: 100%;
+            background: #ccccccfa;
+            position: relative;
+            height: 20px;
+            border-radius: 8px;
+        }
+        
+        .bars-title {
+            color: white;
+            padding: 10px;
+        }
+        
+        .bars .bar-1 {
+            width: 80%;
+            background: #bef389;
+            position: absolute;
+            height: 20px;
+            border-radius: 8px;
+            padding-left: 10px;
+            color: #9c6bc1;
+        }
+        
+        .bars .bar-2 {
+            width: 88%;
+            background: #e6ffff;
+            position: absolute;
+            height: 20px;
+            border-radius: 8px;
+            padding-left: 10px;
+            color: #a791ff;
+        }
+        
+        .bars .bar-3 {
+            width: 70%;
+            background: #d1abff;
+            position: absolute;
+            height: 20px;
+            border-radius: 8px;
+            padding-left: 10px;
+            color: white;
+        }
+        
+        .bars .bar-4 {
+            width: 62%;
+            background: #ffa791;
+            position: absolute;
+            height: 20px;
+            border-radius: 8px;
+            padding-left: 10px;
+            color: white;
+        }
+        
+        .bars .bar-5 {
+            width: 80%;
+            background: #92d9ff;
+            position: absolute;
+            height: 20px;
+            border-radius: 8px;
+            padding-left: 10px;
+            color: white;
+        }
+        
+        .bars .bar-6 {
+            width: 88%;
+            background: #bdfbf1;
+            position: absolute;
+            height: 20px;
+            border-radius: 8px;
+            padding-left: 10px;
+            color: #559fdf;
+        }
+        
+        .arrows {
+            border-bottom: 3px solid white;
+            border-right: 3px solid #f9f6f6;
+            width: 11px;
+            height: 11px;
+            position: fixed;
+            border-radius: 2px;
+            transform: rotate(-45deg);
+            bottom: 87px;
+            opacity: 0;
+        }
+        
+        .arrow1 {
+            left: calc(50% - 45px);
+            animation: opacity 5s infinite linear alternate-reverse;
+            -webkit-animation: opacity 5s infinite linear alternate-reverse;
+            animation-delay: 0s;
+            -webkit-animation-delay: 0s;
+        }
+        
+        .arrow2 {
+            left: calc(50% - 27px);
+            animation: opacity 5s infinite linear alternate-reverse;
+            -webkit-animation: opacity 5s infinite linear alternate-reverse;
+            animation-delay: 0.3s;
+            -webkit-animation-delay: 0.3s;
+        }
+        
+        .arrow3 {
+            left: calc(50% - 9px);
+            animation: opacity 5s infinite linear alternate-reverse;
+            -webkit-animation: opacity 5s infinite linear alternate-reverse;
+            animation-delay: 0.6s;
+            -webkit-animation-delay: 0.6s;
+        }
+        
+        .arrow4 {
+            left: calc(50% + 9px);
+            animation: opacity 5s infinite linear alternate-reverse;
+            -webkit-animation: opacity 5s infinite linear alternate-reverse;
+            animation-delay: 0.9s;
+            -webkit-animation-delay: 0.9s;
+        }
+        
+        .arrow5 {
+            left: calc(50% + 27px);
+            animation: opacity 5s infinite linear alternate-reverse;
+            -webkit-animation: opacity 5s infinite linear alternate-reverse;
+            animation-delay: 1.2s;
+            -webkit-animation-delay: 1.2s;
+        }
+        
+        .dot {
+            width: 20px;
+            height: 20px;
+            margin: 12px;
+            background: #03A9F4;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .dot::before {
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            background: #fffffffc;
+            content: "";
+            border-radius: 50%;
+            margin: 2px;
+        }
+        
+        .experience-title {
+            display: flex;
+            align-items: center;
+            color: #ffffffcf;
+            font-size: 17px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 电脑ui -->
+    <div class="allContainer" id="allContainer">
+        <!-- 头像与姓名 -->
+        <div class="My-logo">
+            <img src="img/timg.jpg" alt="头像" class="headPhoto">
+            <!-- <a href="#" class="aboutCargo" onclick="toPage(6)">About~Cargo</a> -->
+            <a class="aboutCargo" href="/" class="aboutCargo">文章列表</a>
+        </div>
+        <!-- 导航 -->
+        <div class="nav-yuan">
+            <div class="nav-toggle">
+                <div class="icon"></div>
+            </div>
+            <div class="talkbubble">
+                导航
+            </div>
+        </div>
+        <!-- 自定义分页器 -->
+        <div class="pagination">
+            <!-- 小圆点 -->
+            <div class="pdoit point--active" id="pdoit1"></div>
+            <!-- 分割线 -->
+            <div class="line"></div>
+            <div class="pdoit" id="pdoit2"></div>
+            <div class="line"></div>
+            <div class="pdoit" id="pdoit3"></div>
+            <div class="line"></div>
+            <div class="pdoit" id="pdoit4"></div>
+            <div class="line"></div>
+            <div class="pdoit" id="pdoit5"></div>
+            <div class="line"></div>
+            <div class="pdoit" id="pdoit6"></div>
+            <div class="line"></div>
+            <div class="radio" id="radio">
+                <audio src="./27974708.mp3" autoplay="true" loop></audio>
+            </div>
+        </div>
+        <!-- 页面 -->
+        <div class="container" id="container" style="position: relative;">
+            <!-- 背景轮播图片 -->
+            <div class="swiperContainer page">
+                <div class="swiper-container" id="swiper1">
+                    <div class="swiper-wrapper">
+
+                        <div class="swiper-slide">
+                            <img src="img/lun1.jpg" alt="lun3" class="bgPhoto">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/lun3.jpg" alt="lun3" class="bgPhoto">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/lun4.png" alt="lun3" class="bgPhoto">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/lun5.jpg" alt="lun1" class="bgPhoto">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/lun6.jpg" alt="lun2" class="bgPhoto">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/lun7.jpg" alt="lun3" class="bgPhoto">
+                        </div>
+                    </div>
+                </div>
+                <!-- 座右铭中间框框 -->
+                <div class="wrap" id="wrap">
+                    <div style="font-size: 30px;font-weight: bold;width: 100%;">
+                        <div>When in doubt, use brute force.</div>
+                        <div>如果还没想清楚，就用蛮力算法</div>
+                        <div style="text-align: right;">——Ken Thompson</div>
+                    </div>
+                    <div style="font-size: 20px;text-align: center;line-height: 40px;width: 100%;">
+                        <div>许楷沂</div>
+                        <div>一名初出茅庐的前端程序员</div>
+                        <div>CargoX@qq.com</div>
+                    </div>
+                </div>
+                <!-- 遮罩层 -->
+                <div class="cover"></div>
+            </div>
+            <!-- 内容 自我介绍 -->
+            <div class="page coverall" id="page1" style="height: 100vh;">
+                <div class="absolute">
+                    <img src="img/timg.jpg" alt="头像" style="width: 200px;height: 200px;border-radius: 50%;">
+                    <div style="width: 66%;margin: 0 auto; color:rgba(255,255,255,0.8);font-size: 18px;">
+                        <p style="text-indent: 4rem;">
+                            许楷沂，98年精神小伙，一名东莞理工学院准毕业大学生。 计算机专业出身的我,对前端很感兴趣并且钻研至今已有一年有余，今后的职业规划是朝着全栈发展，目前在学<span style="color: #fde6b2;">NodeJs、ReactJs</span>, 有良好的前端编程能力与编程习惯，熟练掌握<span style="color: #fde6b2;">DOM、CSS、JSON、ES6语法</span>等。已能够熟练使用<span style="color: #fde6b2;">VUE，小程序</span>进行开发，
+                            <span style="color: #fde6b2;">Sass、Webpack</span>的熟悉与掌握，也对<span style="color: #fde6b2;">Bootstrap、Element</span>等UI框架有一定的了解与使用。同时，在学校大一大二学习了JavaWeb编程，对<span style="color: #fde6b2;">数据库、SSM、Springboot</span>等熟练掌握。
+                        </p>
+                        <p>
+                            在
+                            <a href="#" title="" target="_blank" style="color: #fde6b2;">东莞市绿灯网络科技有限公司</a>实习过半年,主要是通过学习到的VUE知识与小程序知识，为用户提供一套完整的解决需求方案。
+                        </p>
+                        <p>
+                            与小伙伴们能有效和谐的沟通交流，与团队小伙伴一起讨论并运用最新技术解决业务；具备抗压能力、有较强的自学能力、能够熟练阅读使用中英文API、并上手应用。
+                        </p>
+                    </div>
+
+                </div>
+                <img src="img/bg3.jpg" alt="lun3" class="bgPhoto">
+
+            </div>
+            <!-- 内容 技能-->
+            <div class="page" id="page2" style="height: 100vh;">
+                <!-- <div class="absolute">
+                    <div class="rings">
+                        <div class="ring ring-top"></div>
+                        <div class="ring ring-top ring-segment"></div>
+                        <div class="ring-detail ring-detail-top">HTML:90%</div>
+                        <div class="ring ring-right"></div>
+                        <div class="ring ring-right ring-segment"></div>
+                        <div class="ring ring-bottom-left"></div>
+                        <div class="ring ring-left"></div>
+                        <div class="ring ring-bottom-left ring-segment" style="z-index: 4;border-top-color: transparent;"></div>
+                        <div class="ring ring-bottom-right"></div>
+                        <div class="ring ring-bottom-right ring-segment"></div>
+                    </div>
+                </div> -->
+                <div class="absolute">
+                    <div>
+                        <!-- <h1>Skills:</h1> -->
+                        <ul class="Skills">
+                            <li style="font-size: 20px;">Skills:</li>
+                            <li style="background:#bef389;color:#dcaeff;">ECMAScript</li>
+                            <li style="background:#e6ffff;color:#a791ff;">CSS3</li>
+                            <li style="background:#d1abff">React</li>
+                            <li style="background:#ffa791">NodeJs</li>
+                            <li style="background:#92d9ff">JAVA</li>
+                            <li style="background:#befbf1;color:#559fdf;">VUE</li>
+                        </ul>
+                    </div>
+                    <!-- 技能板块 -->
+                    <div id="diagram"></div>
+                    <div class="get" style="display: none;">
+                        <div class="arc">
+                            <span class="text">ECMAScript</span>
+                            <input type="hidden" class="percent" value="80" />
+                            <!-- <input type="hidden" class="color" value="#97BE0D" /> -->
+                            <input type="hidden" class="color" value="#bef389" />
+                        </div>
+                        <div class="arc">
+                            <span class="text">CSS3</span>
+                            <input type="hidden" class="percent" value="88" />
+                            <!-- <input type="hidden" class="color" value="#d7d8d8" /> -->
+                            <input type="hidden" class="color" value="#e6ffff" />
+                        </div>
+                        <div class="arc">
+                            <span class="text ">React</span>
+                            <input type="hidden " class="percent" value="78" />
+                            <!-- <input type="hidden " class="color" value="#d3d671" /> -->
+                            <input type="hidden " class="color" value="#d1abff" />
+                        </div>
+                        <div class="arc">
+                            <span class="text">NodeJs</span>
+                            <input type="hidden" class="percent" value="62" />
+                            <!-- <input type="hidden" class="color" value="#BEDBE9" /> -->
+                            <input type="hidden" class="color" value="#ffa791" />
+                        </div>
+                        <div class="arc">
+                            <span class="text">JAVA</span>
+                            <input type="hidden" class="percent" value="80" />
+                            <!-- <input type="hidden" class="color" value="#e4a787" /> -->
+                            <input type="hidden" class="color" value="#92d9ff" />
+                        </div>
+                        <div class="arc">
+                            <span class="text">VUE</span>
+                            <input type="hidden" class="percent" value="88" />
+                            <!-- <input type="hidden" class="color" value="pink" /> -->
+                            <input type="hidden" class="color" value="#befbf1" />
+                        </div>
+                    </div>
+                </div>
+                <img src="img/bg4.jpg" alt="lun3" class="bgPhoto">
+            </div>
+            <!-- 项目 项目五环-->
+            <div class="page" id="page3" style="height: 100vh;">
+                <!-- 内容 -->
+                <div class="absolute">
+                    <div class="projects">
+                        <a href="#1">
+                            <div class="project_1">
+                                <span>个人简历</span>
+                            </div>
+                        </a>
+                        <a href="#2">
+                            <div class="project_2">
+                                <span>阳光课程</span>
+                            </div>
+                        </a>
+                        <a href="#3">
+                            <div class="project_3">
+                                <!-- <span>云智莞</span> -->
+                            </div>
+                        </a>
+                        <a href="#4">
+                            <div class="project_4">
+                                <span>智慧小区门禁</span>
+                            </div>
+                        </a>
+                        <a href="#4">
+                            <div class="project_5">
+                                <span>···</span>
+                            </div>
+                        </a>
+
+                        <div class="project_pagination"></div>
+                    </div>
+                </div>
+                <img src="img/bg6.jpg" alt="lun3" class="bgPhoto">
+            </div>
+            <!-- 内容 实习经历 -->
+            <div class="page" id="page4" style="height: 100vh;">
+                <div class="absolute">
+                    <div class="W-work-nr">
+                        <div class="W-work-left">
+                            <div class="W-jing-nr">
+                                <h5>我的经历</h5>
+                                <div class="W-jing-nr-parent">
+                                    <div class="W-time">
+                                        <span>2020</span>
+                                        <i>year</i>
+                                        <div class="W-zhuan"></div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <ul class="W-tim-ul">
+                                <li class="W-li-top W-li-top-diyi">
+                                    <em>2020</em>
+                                    <i>7月</i>
+                                    <b></b>
+                                    <div class="clear"></div>
+                                    <span></span>
+                                </li>
+                                <li class="W-li-top W-li-top-diyi">
+                                    <em>2019</em>
+                                    <i>10月</i>
+                                    <b></b>
+                                    <div class="clear"></div>
+                                    <span></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="W-work-right">
+                            <ul>
+                                <li>
+                                    <p class="W-jie1"><strong>字节跳动训练营</strong>
+                                    </p>
+                                    <p class="W-jie2">
+                                        <span>&lt;学员&gt;</span>字节跳动训练营是由字节跳动与北京邮电大学联合举办的一次免费培训机会，2020年6月笔试通过训练营，与近50位同学一起学习交流，与字节跳动工程师探讨与学习，最终以大项目评分第一结营。
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="W-jie1">在<strong>东莞市绿灯科技有限公司</strong>实习</strong>
+                                    </p>
+                                    <p class="W-jie2">
+                                        <span>&lt;前端工程师&gt;</span>东莞市绿灯科技是由东莞理工学院的学生创办的一个为客户专门定制服务的网络服务商。主要为客户定制计算机网络技术开发、技术转让、技术咨询、技术服务、网页设计等领域服务。 2019年10月~2020年5月底退出团队。
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!-- <div class="workExperiments">
+                        <div class="left">
+                            <div class="work_time">
+                                <div>
+                                    <h5>My experiment</h5>
+                                    <div>
+                                        <span>2020</span>
+                                        <i>year</i>
+                                        <div class="work_zhuan" style="display: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="work_tree"></div>
+                        </div>
+                        <div class="right"></div>
+                    </div> -->
+                </div>
+                <img src="img/bg5.jpg" alt="lun3" class="bgPhoto">
+            </div>
+            <!-- 内容 about me -->
+            <div class="page" id="page5" style="height: 100vh;">
+                <div class="absolute">
+                    <!-- 联系我 -->
+                    <svg id="icon-zhijia" viewBox="0 0 1025 1024" style="width: 40%;height: 13%;">
+                            <path d="M20.8 868.8h983.2v124.8H20.8z" fill="#515151">
+                            </path>
+                            <path d="M88 868.8h849.6l67.2-379.2H20.8z" fill="#515151">
+                            </path>
+                            <path d="M1004.8 848h-43.2l63.2-355.2c0.8-5.6-0.8-12-4.8-16.8-4-4.8-9.6-7.2-16-7.2H670.4l-28-99.2c-18.4-64-6.4-132 32.8-186.4l2.4-3.2c24-32.8 27.2-76 8.8-112.8S631.2 8 590.4 8H435.2c-40.8 0-77.6 22.4-96.8 59.2-18.4 36.8-15.2 80 8.8 112.8l2.4 3.2c39.2 54.4 51.2 121.6 32.8 186.4l-28 99.2H20.8c-6.4 0-12 2.4-16 7.2s-5.6 10.4-4.8 16.8l64 355.2H20.8c-11.2 0-20 8.8-20 20v124.8c0 11.2 8.8 20 20 20h983.2c11.2 0 20-8.8 20-20v-124.8c0.8-10.4-8-20-19.2-20z m-24.8-338.4l-60 338.4H778.4l-96-338.4h297.6z m-237.6 379.2v84H283.2v-84h459.2zM383.2 159.2l-2.4-3.2c-15.2-20.8-17.6-47.2-5.6-70.4s34.4-36.8 60-36.8h155.2c25.6 0 48.8 13.6 60 36.8 12 23.2 9.6 49.6-5.6 70.4l-2.4 3.2c-46.4 64-60.8 144.8-39.2 220.8l24.8 88H397.6l24.8-88c21.6-76 7.2-156-39.2-220.8zM45.6 509.6h297.6l-49.6 176c-3.2 11.2 3.2 22.4 14.4 24.8 11.2 3.2 22.4-3.2 24.8-14.4l52.8-187.2h253.6l96 338.4H105.6L45.6 509.6z m196.8 379.2v84H41.6v-84h200.8z m741.6 0v84H783.2v-84h200.8z"
+                                  fill="#603813">
+                            </path>
+                            <path d="M298.4 744.8c-11.2-3.2-22.4 3.2-24.8 14.4l-8 29.6c-3.2 11.2 3.2 22.4 14.4 24.8 1.6 0.8 4 0.8 5.6 0.8 8.8 0 16.8-5.6 20-15.2l8-29.6c1.6-10.4-4.8-21.6-15.2-24.8z"
+                                  fill="#603813">
+                            </path>
+                        </svg>
+                    <div class="board">
+                        <div style="font-size: 30px;color: white;text-shadow: 2px 2px 2px #ffffff6b;border-bottom: 1px solid #FF9800;margin-bottom: 2vh;margin: 2vh;font-weight: 900;"><span style="color: #FF9800;">CONTACT</span> FOR ME</div>
+                        <div style="margin-bottom: 2vh;font-size: 18px;">
+                            <span style="color:#2196F3">灵感</span>
+                            <span style="color:#FFEB3B">代码</span>
+                            <span style="color:#41c747">梦想</span>
+                            <span style="color:#F44336">未来</span>
+                        </div>
+                        <p style="text-align: center;font-size: 17px;color: #96614e;line-height: 26px;margin-bottom: 30px;">
+                            学习是一个充实愉悦的过程<br /> 喜欢尝试，期待新鲜事物
+                            <br /> 前端即兴趣，兴趣即未来
+                            <br /> 行路有良友，便是捷径
+                            <br /> 期待有机会与您共事！
+                        </p>
+                        <div class="W-lian-bottom">
+                            <a href="javascript:;" target="_blank">
+                                <img src="img/github.png" alt="">
+                                <span class="W-Github">Github</span>
+                            </a>
+                            <a href="javascript:;">
+                                <img src="img/mail.png" alt="">
+                                <span class="W-Mail">CargoX@qq.com</span>
+                            </a>
+                            <a href="javascript:;">
+                                <img src="img/qq.png" alt="">
+                                <span class="W-qq"></span>
+                            </a>
+                            <a href="javascript:;">
+                                <img src="img/wechat.png" alt="">
+                                <span class="W-weixin"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <img src="img/bg7.jpg" alt="lun3" class="bgPhoto">
+            </div>
+        </div>
+    </div>
+
+    <!-- 手机ui -->
+    <div class="phoneContainer">
+        <!-- 背景图片 -->
+        <div>
+            <div class="coverphone"></div>
+            <img src="./img/gbp.jpg" alt="背景图片" style="width: 100%;height: 100vh;position: fixed;top: 0;">
+        </div>
+        <!-- 导航 -->
+        <div class="nav-yuan">
+            <div class="nav-toggle phoneNav">
+                <div class="icon"></div>
+            </div>
+        </div>
+        <!-- 向右滑 -->
+        <div>
+            <div class="arrows arrow1"></div>
+            <div class="arrows arrow2"></div>
+            <div class="arrows arrow3"></div>
+            <div class="arrows arrow4"></div>
+            <div class="arrows arrow5"></div>
+        </div>
+        <!-- 简历内容 -->
+        <div class="phone_message myPhoneSwiper">
+            <div class="swiper-wrapper">
+                <!-- 座右铭以及自我介绍 -->
+                <div class="swiper-slide" style="display: flex;flex-direction: column;justify-content: center;align-items: center;height:100vh;">
+                    <img src="./img/timg.jpg" alt="touxiang" style="width:100px;height: 100px;border-radius: 50%;">
+                    <div>
+                        <div style="font-size: 20px;font-weight: bold;margin: 20px;">
+                            <div>When in doubt, use brute force.</div>
+                            <div>如果还没想清楚，就用蛮力算法</div>
+                            <div style="text-align: right;">——Ken Thompson</div>
+                        </div>
+                        <div style="font-size: 18px;text-align: center;line-height: 30px;">
+                            <div>许楷沂</div>
+                            <div>一名初出茅庐的前端程序员</div>
+                            <div>CargoX@qq.com</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- about me -->
+                <div class="swiper-slide" style="display: flex;flex-direction: column;justify-content: center;align-items: center;height:100vh;">
+                    <div style="text-align: center;font-size: 20px;color: white;padding-bottom: 6px;font-weight: bold;">About Me</div>
+                    <div style="width: 85%;margin: 0 auto;color: rgb(255 255 255);font-size: 16px;background: #96a2da6e;box-shadow: 0px 0px 16px #ffffff66;border-radius: 10px;padding: 10px;padding-top: 0;">
+                        <p style="text-indent: 4rem;">
+                            许楷沂，98年精神小伙，一名东莞理工学院准毕业大学生。 计算机专业出身的我,对前端很感兴趣并且钻研至今已有一年有余，今后的职业规划是朝着全栈发展，目前在学<span style="color: #fde6b2;">NodeJs、ReactJs</span>, 有良好的前端编程能力与编程习惯，熟练掌握<span style="color: #fde6b2;">DOM、CSS、JSON、ES6语法</span>等。已能够熟练使用<span style="color: #fde6b2;">VUE，小程序</span>进行开发，
+                            <span style="color: #fde6b2;">Sass、Webpack</span>的熟悉与掌握，也对<span style="color: #fde6b2;">Bootstrap、Element</span>等UI框架有一定的了解与使用。同时，在学校大一大二学习了JavaWeb编程，对<span style="color: #fde6b2;">数据库、SSM、Springboot</span>等熟练掌握。
+                        </p>
+                        <p>
+                            在
+                            <a href="#" title="" target="_blank" style="color: #fde6b2;">东莞市绿灯网络科技有限公司</a>实习过半年,主要是通过学习到的VUE知识与小程序知识，为用户提供一套完整的解决需求方案。
+                        </p>
+                        <p>
+                            与小伙伴们能有效和谐的沟通交流，与团队小伙伴一起讨论并运用最新技术解决业务；具备抗压能力、有较强的自学能力、能够熟练阅读使用中英文API、并上手应用。
+                        </p>
+                    </div>
+                </div>
+                <!-- 技能 -->
+                <div class="swiper-slide" style="display: flex;flex-direction: column;justify-content: center;align-items: center;height:100vh;">
+                    <div style="text-align: center;font-size: 20px;color: white;padding-bottom: 6px;font-weight: bold;">SKILLS</div>
+                    <div style="width:85%;">
+                        <div class="bars-title">ECMAScript</div>
+                        <div class="bars">
+                            <div class="bar-1">80%</div>
+                        </div>
+                    </div>
+                    <div style="width:85%;">
+                        <div class="bars-title">CSS3</div>
+                        <div class="bars">
+                            <div class="bar-2">88%</div>
+                        </div>
+                    </div>
+                    <div style="width:85%;">
+                        <div class="bars-title">React</div>
+                        <div class="bars">
+                            <div class="bar-3">70%</div>
+                        </div>
+                    </div>
+                    <div style="width:85%;">
+                        <div class="bars-title">NodeJs</div>
+                        <div class="bars">
+                            <div class="bar-4">62%</div>
+                        </div>
+                    </div>
+                    <div style="width:85%;">
+                        <div class="bars-title">JAVA</div>
+                        <div class="bars">
+                            <div class="bar-5">80%</div>
+                        </div>
+                    </div>
+                    <div style="width:85%;">
+                        <div class="bars-title">VUE</div>
+                        <div class="bars">
+                            <div class="bar-6">88%</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 我的经历 -->
+                <!-- <div class="swiper-slide" style="display: flex;flex-direction: column;justify-content: center;align-items: center;height:100vh;">
+                    <div style="text-align: center;font-size: 20px;color: white;padding-bottom: 6px;font-weight: bold;">Experience</div>
+                </div> -->
+                <div class="swiper-slide" style="display: flex;flex-direction: column;justify-content: center;align-items: center;height:100vh;">
+                    <div style="text-align: center;font-size: 20px;color: white;padding-bottom: 6px;font-weight: bold;">Experience</div>
+                    <div style="width: 85%;">
+                        <div class="experience-title">
+                            <!-- 小圆形 -->
+                            <div class="dot"></div>
+                            <span>2020-07</span>
+                        </div>
+                        <div style="color: white;padding-left: 20px;border-left: 3px solid #03a6f4b5;margin-left: 20px;">
+                            <div style="font-size: 18px;margin-bottom: 6px;">字节跳动训练营</div>
+                            <div style="font-size: 11px;margin-bottom: 3px;color: #ffd53b;">学员</div>
+                            <div style="line-height: 17px;padding-bottom: 10px;">字节跳动训练营是由字节跳动与北京邮电大学联合举办的一次免费培训机会，2020年6月笔试通过训练营，与近50位同学一起学习交流，与字节跳动工程师探讨与学习，最终以大项目评分第一结营。</div>
+                        </div>
+                        <div class="experience-title">
+                            <!-- 小圆形 -->
+                            <div class="dot"></div>
+                            <span>2019-10</span>
+                        </div>
+                        <div style="color: white;padding-left: 20px;border-left: 3px solid #03a6f4b5;margin-left: 20px;">
+                            <div style="font-size: 18px;margin-bottom: 6px;">东莞绿灯科技有限公司</div>
+                            <div style="font-size: 11px;margin-bottom: 3px;color: #ffd53b;">前端开发</div>
+                            <div style="line-height: 17px;padding-bottom: 10px;">东莞市绿灯科技是由东莞理工学院的学生创办的一个为客户专门定制服务的网络服务商。主要为客户定制计算机网络技术开发、技术转让、技术咨询、技术服务、网页设计等领域服务。 2019年10月~2020年5月底退出团队。</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 我的项目 -->
+                <div class="swiper-slide" style="display: flex;flex-direction: column;justify-content: center;align-items: center;height:100vh;">
+                    <div style="text-align: center;font-size: 20px;color: white;padding-bottom: 6px;font-weight: bold;">Project</div>
+                </div>
+                <div class="swiper-slide" style="display: flex;flex-direction: column;justify-content: center;align-items: center;height:100vh;">
+                    <div id="myProjectSwiper" style="width: 200px;height: 200px;">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" style="width: 200px;height: 200px !important;">
+                                <img src="./img/yangguangkecheng.png" alt="" style="width: 100%;height: 100%;border-radius: 30px;">
+                                <div style="width: 100%;text-align: center; height: 40px;line-height: 40px;font-size: 18px;"><a href="#1" style="color: white;">阳光课程</a></div>
+                            </div>
+                            <div class="swiper-slide" style="width: 200px;height: 200px !important;">
+                                <img src="./img/yunzhiguan.png" alt="" style="width: 100%;height: 100%;border-radius: 30px;">
+                                <div style="width: 100%;text-align: center; height: 40px;line-height: 40px;font-size: 18px;"><a href="#1" style="color: white;">云智莞</a></div>
+                            </div>
+                            <div class="swiper-slide" style="width: 200px;height: 200px !important;">
+                                <img src="./img/5f23b3d22706a.jpg" alt="" style="width: 100%;height: 100%;border-radius: 30px;">
+                                <div style="width: 100%;text-align: center; height: 40px;line-height: 40px;font-size: 18px;"><a href="#1" style="color: white;">个人简历网站</a></div>
+                            </div>
+                            <div class="swiper-slide" style="width: 200px;height: 200px !important;">
+                                <img src="./img/lun2.jpg" alt="" style="width: 100%;height: 100%;border-radius: 30px;">
+                                <div style="width: 100%;text-align: center; height: 40px;line-height: 40px;font-size: 18px;"><a href="#1" style="color: white;">智慧小区出入系统</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- contact me -->
+                <div class="swiper-slide" style="display: flex;flex-direction: column;justify-content: center;align-items: center;height:100vh;">
+                    <div style="text-align: center;font-size: 20px;color: white;padding-bottom: 6px;font-weight: bold;">Contact Me</div>
+                    <div style="margin-top: 50px;">
+                        <div style="display: flex;font-size: 16px;font-weight: bold;color: #ffffffcf;">
+                            <img src="img/github.png" alt="" style="width: 16px;height: 16px;margin-right: 10px;margin-left: -20px;">
+                            <div>CargoX</div>
+                        </div>
+                        <div style="display: flex;font-size: 16px;font-weight: bold;color: #ffffffcf;">
+                            <img src="img/qq.png" alt="" style="width: 16px;height: 16px;margin-right: 10px;margin-left: -20px;">
+                            <div>876956898</div>
+                        </div>
+                        <div style="display: flex;font-size: 16px;font-weight: bold;color: #ffffffcf;">
+                            <img src="img/wechat.png" alt="" style="width: 16px;height: 16px;margin-right: 10px;margin-left: -20px;">
+                            <div>CargoX</div>
+                        </div>
+                        <div style="display: flex;font-size: 16px;font-weight: bold;color: #ffffffcf;">
+                            <img src="img/mail.png" alt="" style="width: 16px;height: 16px;margin-right: 10px;margin-left: -20px;">
+                            <div>CargoX@qq.com</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/raphael.js"></script>
+<script src='js/init.min.js'></script>
+<!-- 鼠标翻页 -->
+<script>
+    var index = 1;
+    var curIndex = 1;
+    var container = document.getElementById('container')
+    var hei = document.body.clientHeight;
+    // var hei = window.screen.height;
+    console.log(hei)
+    var pages = document.getElementsByClassName('page');
+    // 将每个page都设置成屏幕高度
+    for (var page = 0; page < pages.length; page++) {
+        pages[page].style.height = hei + 'px';
+    }
+    window.onresize = function() {
+        hei = document.body.clientHeight;
+        // 将每个page都设置成屏幕高度
+        for (var page = 0; page < pages.length; page++) {
+            pages[page].style.height = hei + 'px';
+        }
+        console.log(hei)
+    }
+    var pagenum = pages.length;
+    //如果不加时间控制，滚动会过度灵敏，一次翻好几屏
+    var startTime = 0, //翻屏起始时间  
+        endTime = 0,
+        now = 0;
+    //浏览器兼容      
+    if ((navigator.userAgent.toLowerCase().indexOf("firefox") != -1)) {
+        document.addEventListener("DOMMouseScroll", scrollFun, false);
+    } else if (document.addEventListener) {
+        document.addEventListener("mousewheel", scrollFun, false);
+    } else if (document.attachEvent) {
+        document.attachEvent("onmousewheel", scrollFun);
+    } else {
+        document.onmousewheel = scrollFun;
+    }
+    //滚动事件处理函数
+    function scrollFun(event) {
+        startTime = new Date().getTime();
+        var delta = event.detail || (-event.wheelDelta);
+        //mousewheel事件中的 “event.wheelDelta” 属性值：返回的如果是正值说明滚轮是向上滚动
+        //DOMMouseScroll事件中的 “event.detail” 属性值：返回的如果是负值说明滚轮是向上滚动
+        if ((endTime - startTime) < -1000) {
+            if (delta > 0 && parseInt(container.offsetTop) > -(document.body.clientHeight * (pagenum - 1))) {
+                //向下滚动
+                index++;
+                toPage(index);
+            }
+            if (delta < 0 && parseInt(container.offsetTop) < 0) {
+                //向上滚动
+                index--;
+                toPage(index);
+            }
+            endTime = new Date().getTime();
+        } else {
+            // event.preventDefault();
+        }
+    }
+
+    function toPage(idx) {
+        //jquery实现动画效果
+        if (idx != curIndex) {
+            index = idx
+            var delta = idx - curIndex;
+            now = now - delta * document.body.clientHeight;
+
+            $("#container").animate({
+                top: (now + 'px'),
+            }, 500);
+            // setTimeout(() => {
+            //     if (document.documentElement.scrollTop != '0') {
+            //         console.log(document.documentElement.scrollTop)
+            //         document.documentElement.scrollTop = 0;
+            //     }
+            // }, 500);
+            $(document.documentElement).animate({
+                scrollTop: 0
+            }, 500)
+
+            curIndex = idx;
+
+            //更改列表的选中项
+            // console.log(document.getElementsByClassName('pdoit'))
+            for (let i of document.getElementsByClassName('pdoit')) {
+                i.classList.remove('point--active');
+            }
+            document.getElementById("pdoit" + index).classList.add('point--active')
+        }
+    }
+    document.getElementById("pdoit1").onclick = function() {
+        toPage(1);
+
+    }
+    document.getElementById("pdoit2").onclick = function() {
+        toPage(2);
+    }
+    document.getElementById("pdoit3").onclick = function() {
+        toPage(3);
+    }
+    document.getElementById("pdoit4").onclick = function() {
+        toPage(4);
+    }
+    document.getElementById("pdoit5").onclick = function() {
+        toPage(5);
+    }
+    document.getElementById("pdoit6").onclick = function() {
+        toPage(6);
+    }
+</script>
+
+<!-- 背景轮播图 -->
+<script>
+    let effect = ['fade', 'cube', 'coverflow', 'flip'];
+    let i = 0;
+    var swiper = new Swiper('#swiper1', {
+        autoplay: {
+            delay: 5000,
+        },
+        effect: effect[i],
+        speed: 2000,
+        // observer: true,
+        noSwiping: true,
+        on: {
+            slideChangeTransitionStart: function() {
+                // alert("开始");
+                // i = Math.floor(Math.random() * 4) //0-9
+                // if (i > 3) {
+                //     i = 0;
+                // }
+            },
+        }
+    })
+</script>
+<!-- 座右铭 -->
+<script>
+    // 获取子元素
+    var element = document.getElementById('wrap');
+    //刚鼠标进入
+    var handleMouseEnter = () => {
+            element.classList.add("wrap--active");
+        }
+        //鼠标移动的时候
+    var handleMouseMove = (event) => {
+            const {
+                offsetX,
+                offsetY
+            } = event;
+            let X;
+            let Y;
+            X = ((offsetX - (600 / 2)) / 3) / 3 / 2;
+            Y = (-(offsetY - (600 / 2)) / 3) / 3 / 2;
+            // X = (offsetX - (275 / 2)) / 3 / 3;
+            // Y = (-(offsetX - (127 / 2)) / 3) / 3;
+            this.setProperty('--rY', X.toFixed(2));
+            this.setProperty('--rX', Y.toFixed(2));
+        }
+        //赋值
+    var setProperty = (p, v) => {
+            return element.style.setProperty(p, v);
+        }
+        //鼠标退出
+    var handleMouseLeave = () => {
+        element.classList.remove('wrap--active')
+        element.style.setProperty('--rY', 0);
+        element.style.setProperty('--rX', 0);
+    }
+    element.addEventListener('mouseenter', handleMouseEnter);
+    element.addEventListener('mousemove', handleMouseMove);
+    element.addEventListener('mouseleave', handleMouseLeave);
+</script>
+
+
+<!-- 手机ui -->
+<!-- 监听右上角的导航键 -->
+<script>
+    $('.phoneNav').on('click', function() {
+        if ($('.phoneNav').hasClass('nav-open')) {
+            console.log("yes")
+            $('.phoneNav').removeClass('nav-open')
+        } else {
+            console.log('no')
+            $('.phoneNav').addClass('nav-open')
+        }
+    })
+</script>
+
+<!-- swiper -->
+<script>
+    var myPhoneSwiper = new Swiper('.myPhoneSwiper', {
+        // direction: 'vertical'
+    })
+    var myProjectSwiper = new Swiper('#myProjectSwiper', {
+        effect: 'cube',
+    })
+</script>
+
+</html>

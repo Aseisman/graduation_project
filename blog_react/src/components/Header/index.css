@@ -1,0 +1,151 @@
+@font-face {
+    font-family: 'IOS';
+    src: url('../../assets/fonts/苹方黑体-细-简.ttf');
+}
+
+
+/* pc */
+@media screen and (max-width:2560px){
+    .header_height{
+        height: 5.5rem;
+        width: 100vw;
+    }
+    .header {
+        width: 100vw;
+        height: 5.5rem;
+        border: 1px solid rgba(159, 159, 159, 0.2);
+        position: fixed;
+        background-color: white;
+        z-index: 2;
+    }
+    .header_photo {
+        width: 4.5rem;
+        border-radius: 10%;
+        height: 4.5rem;
+    }
+    .header_left {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+    .header_center {
+        display: flex !important;
+        align-items: center;
+        flex: 1;
+    }
+    /* 238, 113, 91 */
+    .menu-active {
+        font-size: 1.7rem;
+        color: rgb(238, 113, 91);
+        margin: 0px 1rem;
+        width: 7rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-family: 'IOS';
+    }
+    .menu {
+        font-size: 1.7rem;
+        color: rgb(0, 0, 0, 0.7);
+        margin: 0px 1rem;
+        width: 7rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-family: 'IOS';
+    }
+    .menu:hover {
+        color: rgb(235, 70, 41);
+        cursor: pointer;
+    }
+    .menu-active:hover {
+        color: rgb(245, 59, 26);
+        cursor: pointer;
+    }
+    
+    .header_right {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+    }
+    .register {
+        width: 8rem;
+        color: rgb(238, 113, 91);
+        font-size: 1.6rem;
+        text-align: center;
+        border: 1px solid rgb(238, 113, 91);
+        border-radius: 2rem;
+        height: 4rem;
+        line-height: 3.5rem;
+        margin: 0 1rem;
+    }
+    .login {
+        width: 9rem;
+        height: 3.9rem;
+        color: white;
+        font-size: 1.6rem;
+        background-color: rgb(238, 113, 91);
+        border-radius: 2rem;
+        line-height: 3.5rem;
+        text-align: center;
+        margin: 0 1rem;
+    }
+    .login:hover {
+        background-color: rgb(241, 90, 63);
+        cursor: pointer;
+    }
+    .register:hover {
+        background-color: rgba(233, 233, 233, 0.7);
+        cursor: pointer;
+    }
+    .drop-down {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 2rem;
+        padding: 0 1rem;
+        /* border-radius: 0.5rem; */
+        position: relative;
+    }
+    .drop-down:hover {
+        background-color: rgba(233, 233, 233, 0.7);
+    }
+    .triangle {
+        width: 0;
+        height: 0;
+        border-left: 0.7rem solid transparent;
+        border-right: 0.7rem solid transparent;
+        border-top: 1.2rem solid #8e8989d1;
+    }
+    .drop-list {
+        position: absolute;
+        top: 3.5rem;
+        left: 0rem;
+        width: 18.5rem;
+        background: white;
+        box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+        display: none;
+    }
+    .drop-list > p {
+        margin: 0;
+        margin-top: 1rem;
+        width: inherit;
+        text-align: center;
+        line-height: 3rem;
+    }
+    .drop-list > p:hover {
+        background-color: rgba(233, 233, 233, 0.7);
+        cursor: pointer;
+    }
+    .drop-down:hover .drop-list {
+        display: block;
+    }
+}
+
+/* phone */
+@media screen and (max-width:768px){
+    .header_left {
+        display: none !important;
+    }
+}

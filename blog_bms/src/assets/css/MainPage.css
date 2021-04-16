@@ -1,0 +1,55 @@
+.yy-bg {
+    width: 80%;
+    height: 30%;
+    margin: 3%;
+}
+
+.yy-el-col-2 {
+    position: absolute;
+    top: -150px;
+    right: 175px;
+    color: white;
+}
+
+.yy-el-col-3 {
+    position: absolute;
+    top: -140px;
+    left: 142px;
+    color: white;
+}
+
+.yy-el-col-1 {
+    position: absolute;
+    top: -150px;
+    left: 30px;
+    color: white;
+}
+
+.yy-bg-text-1 {
+    color: rgba(240, 241, 242, 1);
+    text-align: center;
+}
+
+.yy-bg-text-2 {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 1.4rem
+}
+
+.yy-bg-text-3 {
+    position: absolute;
+    left: 90px;
+    top: -150px;
+    color: white;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.yy-bg-text-4 {
+    position: absolute;
+    left: 120px;
+    top: -100px;
+    color: white;
+    font-size: 1.8rem;
+    text-align: center;
+}

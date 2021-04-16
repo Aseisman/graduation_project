@@ -1,0 +1,125 @@
+/* 基本默认值 */
+
+html {
+    font-size: 62.5%;
+    color: #222;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* 被选中的文字的背景颜色，阴影 */
+
+::selection {
+    background-color: #b3d4fc;
+    text-shadow: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    /* 小圆点消失 */
+}
+
+
+/* 工具样式 */
+
+
+/* 仿bootstrap */
+
+
+/* !important使得优先级最高 */
+
+.center-block {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.pull-right {
+    float: right !important;
+}
+
+.pull-left {
+    float: left !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.hide {
+    display: none !important;
+}
+
+.show {
+    display: block !important;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+
+/* 隐藏文本 */
+
+.text-hide {
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+
+
+/* table触发bfc */
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}
+
+
+/* 响应式开发 */
+
+@media screen and (max-width:2560px) {
+    .allContainer {
+        display: block !important;
+    }
+    .phoneContainer {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .allContainer {
+        display: none !important;
+    }
+    .phoneContainer {
+        display: block !important;
+    }
+}
